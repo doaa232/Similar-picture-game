@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" class="wrapper">
+        <div class="signature">
+            <span>D</span>
+            <span>.</span>
+            <span>M</span>
+        </div>
+        <button class="btn" @click="btnRet()">Restart</button>
+        <div class="about">
+            <div class="count">Count : <span :style="{'color': colorCo}" v-cloak>{{ count }}</span>
+                <span v-if="!level">/9</span>
+                <span v-if="level">/12</span>
+            </div>
+            <div class="level">
+                <button class="btnLevel" @click="levelEasy()">Easy</button>
+                <button class="btnLevel" @click="levelHard()">hard</button>
+            </div>
+            <div class="time">Time left : <span :style="{'color':colorTi}" v-cloak>{{ time }}</span>s</div>
+        </div>
+        <div class="result">
+            <span v-cloak v-show="win">YOU WON(:</span>
+            <span v-cloak v-show="lost">YOU LOST):</span>
+        </div>
+        <div class="wrapper_card">
+            <div :class="{levelHard : level}" class="card"  v-for="cart in carts" :key="cart.id" @click="changeShape(cart.id)" :style="{'transform': cart.style}">
+                <div class="front"></div>
+                <div class="back">
+                    <img :src="cart.img">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
